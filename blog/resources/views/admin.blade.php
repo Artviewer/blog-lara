@@ -60,11 +60,15 @@
                             </td>
 
                             <td>
+                                <!-- Кнопка редактировать -->
+                                <form action="/admin/edit/{{ $item->id }}" method="POST">
+                                    {{ csrf_field() }}
+                                    <button  class='btn btn-success'>Редактировать</button>
+                                </form>
                                 <!-- Кнопка Удалить -->
                                 <form action="/news/{{ $item->id }}" method="POST">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
-
                                     <button  class='btn btn-danger'>Удалить статью</button>
                                 </form>
                             </td>

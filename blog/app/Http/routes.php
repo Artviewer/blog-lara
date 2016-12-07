@@ -27,11 +27,27 @@ Route::get('/admin', function () {
 /**
  * Вывод административной части
  */
-Route::get('/concretnews/{id}', function ($id) {
+Route::any('/concretnews/{id}', function ($id) {
     $news = News::where('id','=',$id)->get();
     return view('concretnews', [
         'news' => $news
     ]);
+});
+
+
+Route::any('/admin/edit/{id}', function($id){
+    $news = News::where('id','=',$id)->get();
+    return view ('edit',[
+        'news'=>$news
+    ]);
+});
+
+Route::post('/admin/edit/{id}', function (Request $request) {
+    $item = News::where('id','=',$request->id)->get();
+    $item->title = $request->title;
+    $item->text = $request->text;
+    $item->update();
+    return redirect('/admin/edit/{id}');
 });
 
 /**
@@ -55,6 +71,7 @@ Route::post('/admin', function (Request $request) {
 
     return redirect('/admin');
 });
+
 
 /**
  * Удалить существующую задачу

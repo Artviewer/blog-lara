@@ -22,4 +22,5 @@
                 </table>
             </div>
         </div>
+        <a href="http://lara-blog.dev/">Назад</a>
 @endsection
